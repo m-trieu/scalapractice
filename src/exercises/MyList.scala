@@ -16,7 +16,7 @@ abstract class MyList[+T] {
   override def toString: String = "[ " + printElements + " ]"
 }
 
-object Empty extends MyList[Nothing] {
+case object Empty extends MyList[Nothing] {
   override def head: Nothing = throw new NoSuchElementException
   override def tail: MyList[Nothing] = throw new NoSuchElementException
   override def isEmpty: Boolean = true
@@ -28,7 +28,7 @@ object Empty extends MyList[Nothing] {
   override def ++[S >: Nothing](list: MyList[S]): MyList[S] = list
 }
 
-class Construct[+T](h: T, t: MyList[T]) extends MyList[T] {
+case class Construct[+T](h: T, t: MyList[T]) extends MyList[T] {
   override def head: T = h
   override def tail: MyList[T] = t
   override def isEmpty: Boolean = false
